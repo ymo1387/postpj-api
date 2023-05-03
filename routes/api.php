@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Subscribe;
 use App\Http\Controllers\Api\V1\PostController;
 use App\Http\Controllers\Api\V1\UserLoginController;
 use App\Http\Controllers\Api\V1\UserRegisterController;
@@ -24,6 +25,11 @@ Route::group(['prefix'=>'v1'], function () {
 
     Route::group(['middleware'=>'auth:sanctum'], function () {
         Route::get('/user', fn (Request $request) => $request->user());
+
         Route::apiResource('posts', PostController::class);
+
+        Route::get('/users/{user}/subscriber-list', [Subscribe::class, 'subscribers']);
+        Route::get('/users/{user}/subscribe', [Subscribe::class, 'subscribe']);
+        Route::get('/users/{user}/unsubscribe', [Subscribe::class, 'unsubscribe']);
     });
 });
