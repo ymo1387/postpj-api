@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return PostResource::collection(auth()->user()->posts);
+        return PostResource::collection(auth()->user()->posts()->orderBy('id', 'desc')->get());
     }
 
     /**
