@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Models\User;
+use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -15,14 +16,14 @@ class Subscribe extends Controller
 
     public function subscribe(User $user)
     {
-        $user->subscribers()->create(['subscriber_id' => auth()->user()->id]);
+        auth()->user()->subscribings()->create(['user_id' => $user->id]);
 
         return response()->noContent();
     }
 
     public function unsubscribe(User $user)
     {
-        $user->subscribers()->where('subscriber_id', auth()->user()->id)->delete();
+        auth()->user()->subscribings()->where('user_id', $user->id)->delete();
 
         return response()->noContent();
     }
