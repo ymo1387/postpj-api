@@ -10,7 +10,7 @@ class Subscribe extends Controller
 {
     public function subscribers(User $user)
     {
-        return response()->json($user->subscribers->load('user:id,name')->pluck('user'));
+        return response()->json($user->subscribers()->orderBy('id', 'desc')->get()->load('from:id,name')->pluck('from'));
     }
 
     public function subscribe(User $user)
@@ -25,5 +25,10 @@ class Subscribe extends Controller
         $user->subscribers()->where('subscriber_id', auth()->user()->id)->delete();
 
         return response()->noContent();
+    }
+
+    public function subscribing(User $user)
+    {
+        return response()->json($user->subscribings()->orderBy('id', 'desc')->get()->load('to:id,name')->pluck('to'));
     }
 }

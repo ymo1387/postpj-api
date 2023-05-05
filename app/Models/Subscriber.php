@@ -9,8 +9,13 @@ class Subscriber extends Model
 {
     protected $fillable = ['subscriber_id', 'get_noti'];
 
-    public function user()
+    public function from()
     {
         return $this->belongsTo(User::class, 'subscriber_id');
+    }
+
+    public function to()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

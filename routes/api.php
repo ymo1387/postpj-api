@@ -30,7 +30,10 @@ Route::group(['prefix'=>'v1'], function () {
 
         Route::apiResource('posts', PostController::class);
 
+        // subscribers from user
         Route::get('/users/{user}/subscriber-list', [Subscribe::class, 'subscribers']);
+        // subscribers to user
+        Route::get('users/{user}/subscribing-list', [Subscribe::class, 'subscribing']);
         Route::get('/users/{user}/subscribe', [Subscribe::class, 'subscribe']);
         Route::get('/users/{user}/unsubscribe', [Subscribe::class, 'unsubscribe']);
     });
