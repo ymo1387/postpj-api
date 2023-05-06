@@ -2,8 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\V1\Subscribe;
 use App\Http\Controllers\Api\V1\PostController;
+use App\Http\Controllers\Api\V1\UserController;
+use App\Http\Controllers\Api\V1\SubscribeController;
 use App\Http\Controllers\Api\V1\Auth\UserLoginController;
 use App\Http\Controllers\Api\V1\Auth\UserLogoutController;
 use App\Http\Controllers\Api\V1\Auth\UserRegisterController;
@@ -31,10 +32,12 @@ Route::group(['prefix'=>'v1'], function () {
         Route::apiResource('posts', PostController::class);
 
         // subscribers from user
-        Route::get('/users/{user}/subscriber-list', [Subscribe::class, 'subscribers']);
+        Route::get('/users/{user}/subscriber-list', [SubscribeController::class, 'subscribers']);
         // subscribers to user
-        Route::get('users/{user}/subscribing-list', [Subscribe::class, 'subscribing']);
-        Route::post('/users/{user}/subscribe', [Subscribe::class, 'subscribe']);
-        Route::post('/users/{user}/unsubscribe', [Subscribe::class, 'unsubscribe']);
+        Route::get('/users/{user}/subscribing-list', [SubscribeController::class, 'subscribing']);
+        Route::post('/users/{user}/subscribe', [SubscribeController::class, 'subscribe']);
+        Route::post('/users/{user}/unsubscribe', [SubscribeController::class, 'unsubscribe']);
+        // user list
+        Route::get('/users', [UserController::class, 'userList']);
     });
 });

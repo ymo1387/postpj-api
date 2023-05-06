@@ -7,7 +7,7 @@ use App\Models\Subscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class Subscribe extends Controller
+class SubscribeController extends Controller
 {
     public function subscribers(User $user)
     {

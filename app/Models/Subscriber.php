@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscriber extends Model
 {
-    protected $fillable = ['subscriber_id', 'get_noti'];
+    protected $fillable = ['user_id', 'subscriber_id', 'get_noti'];
 
     public function from()
     {
